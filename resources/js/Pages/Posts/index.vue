@@ -5,7 +5,7 @@
     </template>
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="flex justify-start py-6">
+        <div v-if="can('create','Post')" class="flex justify-start py-6">
           <inertia-link
             :href="route('posts.create')"
             class="bg-indigo-600 py-2 px-4 rounded-md text-white"
@@ -158,6 +158,7 @@
 import AppLayout from "@/Layouts/AppLayout";
 import Swal from "sweetalert2";
 import axios from 'axios';
+import { useAbility } from '@casl/vue';
 
 export default {
   name: "Index",
@@ -201,6 +202,15 @@ export default {
       });
     },
   },
+  setup() {
+    // some code
+    const { can } = useAbility();
+
+    return {
+      // other props
+      can
+    };
+  }
 };
 </script>
 

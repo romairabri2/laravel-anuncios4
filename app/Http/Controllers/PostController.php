@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Laravel\Jetstream\Features;
+
 use Illuminate\Http\Request;
 
 use App\Models\Post;
+
+use App\Models\User;
 
 use Inertia\Inertia;
 
