@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->mediumText('body');
+            $table->float('total_payments',8,2);
             $table->timestamps();
             $table->softDeletes();
         });

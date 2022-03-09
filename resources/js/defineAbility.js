@@ -9,7 +9,8 @@ export default defineAbility((can, cannot) => {
 import { defineAbility } from '@casl/ability';
 
 export default defineAbility((can, cannot) => {
-  can('create', 'Post');
+  //cannot('create','Post');
+  //cannot('manage','Team');
 
 });
 

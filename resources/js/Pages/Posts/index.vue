@@ -5,12 +5,11 @@
     </template>
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div v-if="can('create','Post')" class="flex justify-start py-6">
+        <div v-if="$page.props.user.role=='admin'" class="flex justify-start py-6">
           <inertia-link
             :href="route('posts.create')"
             class="bg-indigo-600 py-2 px-4 rounded-md text-white"
           >
-            Create
           </inertia-link>
         </div>
 
@@ -50,7 +49,7 @@
                             tracking-wider
                           "
                         >
-                          Title
+                        Apartamento
                         </th>
                         <th
                           scope="col"
@@ -64,7 +63,21 @@
                             tracking-wider
                           "
                         >
-                          Body
+                          Nombre
+                        </th>
+                        <th
+                          scope="col"
+                          class="
+                            px-6
+                            py-3
+                            text-left text-xs
+                            font-medium
+                            text-gray-500
+                            uppercase
+                            tracking-wider
+                          "
+                        >
+                          Aporte
                         </th>
                         <th scope="col" class="relative px-6 py-3">
                           <span class="sr-only">Show</span>
