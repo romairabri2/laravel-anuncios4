@@ -10,6 +10,7 @@
             :href="route('posts.create')"
             class="bg-indigo-600 py-2 px-4 rounded-md text-white"
           >
+          Create
           </inertia-link>
         </div>
 

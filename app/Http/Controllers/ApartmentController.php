@@ -6,7 +6,7 @@ use Laravel\Jetstream\Features;
 
 use Illuminate\Http\Request;
 
-use App\Models\Post;
+use App\Models\Apartment;
 
 use App\Models\User;
 
@@ -16,7 +16,7 @@ use Redirect;
 
 use Auth;
 
-class PostController extends Controller
+class ApartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,33 +25,35 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return Inertia::render('Posts/index', ['posts' => $posts]);
+        $apartment = Apartment::all();
+        //return Inertia::render('Apartments/index', ['apartments' => $apartments]);
+        return response($apartment);
     }
 
-    /**
+     /**
      *Display a listing of the resource.
      *  
      * @return \Inertia\Response
      */
     public function create(): \Inertia\Response
     {
-        return Inertia::render('Posts/Create');
+        return Inertia::render('Apartments/Create');
     }
 
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-        return Inertia::render('Posts/Update', [
-            'post' => $post
+        $apartment = Apartment::findOrFail($id);
+        return Inertia::render('Apartments/Update', [
+            'apartment' => $apartment
         ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Redirect
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
@@ -60,14 +62,21 @@ class PostController extends Controller
             'body'  => 'required|string'
         ]);
 
-        Post::create([
+        /*Apartment::create([
             'title' => $request->title,
-            'body'  => $request->body,
+            'body' => $request->body,
             'user_id' => $request->user_id
         ]);
+        */
 
-        //return response("El post ha sido creado correctamente", 200);
-        return Redirect::route('posts.index');
+        $apartment=Apartment::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'user_id' => Auth::id()
+        ]);
+
+        return response("El Apartamento ha sido creado correctamente", 201);
+        //return Redirect::route('apartaments.index');
     }
 
     /**
@@ -78,8 +87,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-        return response($post);
+        $apartment = Apartment::findOrFail($id);
+        return response($apartment);
     }
 
     /**
@@ -91,12 +100,12 @@ class PostController extends Controller
      */
     public function update(Request $request, $id): \Illuminate\Http\RedirectResponse
     {
-        $post = Post::findOrFail($id);
-        $post->update($request->all());
-        $post->save();
+        $apartment = Apartment::findOrFail($id);
+        $apartment->update($request->all());
+        $apartment->save();
 
-        //return response("El post ha sido actualizado correctamente");
-        return Redirect::route('posts.index');
+        return response("El apartamento ha sido actualizado correctamente");
+        //return Redirect::route('apartments.index');
     }
 
     /**
@@ -107,7 +116,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::findOrfail($id)->delete();
-        return response("El post ha sido eliminado correctamente");
+        Apartment::findOrFail($id)->delete();
+        return response("El apartamento ha sido eliminado correctamente");
+        //return response("El apartamento ha sido eliminado correctamente");
     }
 }
