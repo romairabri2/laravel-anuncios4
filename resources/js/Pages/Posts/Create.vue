@@ -11,9 +11,9 @@
               <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
               <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <article class="p-10">
-                  <h2 class="text-3xl font-bold pb-6">Create Post</h2>
+                  <h2 class="text-3xl font-bold pb-6">Create P</h2>
                   <form @submit.prevent ="createPost">
-                    <Label class="text-2xl">Title</Label>
+                    <Label class="text-2xl">Nombre</Label>
                     <Input ref="title" v-model="form.title" class="w-1/2 my-3" type="text" required placeholder="Title..." />
                     <InputError :message="form.errors.title"/>
 
